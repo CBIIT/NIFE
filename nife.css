@@ -1,0 +1,98 @@
+body {
+  font-family: Helvetica, Arial, Sans-Serif;
+}
+
+h2 {
+  text-align: center;
+}
+
+h4 {
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.column {
+  float: left;
+}
+
+.left, .right {
+  width: 25%;
+}
+
+table.sample_table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th.bio {
+  font-size:14px;
+  font-style:bold;
+  text-align:right;
+  vertical-align:top;
+}
+
+td.bio {
+  font-size:14px;
+}
+
+.middle {
+  width: 50%;
+}
+
+p.facility {
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid black;
+    box-shadow: 2px 2px lightgrey;
+    padding: 1px;
+    margin: 3px;
+}
+a.facility {
+  color:inherit;
+}
+.linkbox {
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid black;
+    box-shadow: 2px 2px lightgrey;
+    padding: 1px;
+    margin: 3px;
+}
+
+th.facility_form {
+  font-size:14px;
+  font-style:bold;
+  text-align:right;
+  vertical-align:top;
+}
+
+td.facility_form {
+  font-size:14px;
+}
+
+div.facility_info {
+  float:left;
+}
+div.biosample_info {
+  float:left;
+}
+div.container {
+  width:2000px;
+}

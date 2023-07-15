@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
+            integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
+    <script src="nife.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="nife.css">
+
+</head>
+<body>
+    <h2 id="facility_name" style="text-align:center"></h2>
+    <div class="container" style="overflow:auto">
+      <div class="facility_info" style="border:1px solid black;">
+          <table>
+              <TR><TH class="facility_form">Principle Investigator</TH>
+                  <TD class="facility_form">
+                      <SELECT><OPTION></OPTION><OPTION>Principle Investigator</OPTION></SELECT>
+                  </TD>
+              </TR>
+               <TR><TH class="facility_form">Project Scientist</TH>
+                  <TD class="facility_form">
+                      <SELECT><OPTION></OPTION><OPTION>Project Scientist</OPTION></SELECT>
+                  </TD>
+              </TR>
+               <TR><TH class="facility_form">Dataset Unique ID</TH>
+                  <TD class="facility_form">
+                      <INPUT type="text" />
+                  </TD>
+              </TR>
+              <TR><TH class="facility_form">Imaging Method</TH>
+                  <TD class="facility_form">
+                      <SELECT><OPTION></OPTION><OPTION>Method 1</OPTION></SELECT>
+                  </TD>
+              </TR>
+              <TR><TH class="facility_form">Study Description</TH>
+                  <TD class="facility_form">
+                      <TEXTAREA> </TEXTAREA>
+                  </TD>
+              </TR>
+              <TR><TH class="facility_form">Supporting Links</TH>
+                  <TD class="facility_form">
+                      <TEXTAREA> </TEXTAREA>
+                  </TD>
+              </TR>
+        </table>
+      </div>
+      <div class="biosample_info" style="border:1px solid black;" >
+          <div id="biosample_table_div"></div>
+      </div>
+    </div>
+    <div class="dialog" id="specimen_dialog" title="Specimen Dialog">Info goes here</div>
+</body>
+</html>
