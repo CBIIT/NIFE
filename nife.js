@@ -27,7 +27,7 @@ $(document).ready(function(){
   let filename = href.split("/").pop();
   let url = filename.split("?")[0];
 
-  if (url == "index.html") {
+  if (url == "landing.html") {
     add_facilities();
     add_links();
   }
