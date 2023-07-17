@@ -74,9 +74,9 @@ function setup_biosample_table() {
   var id_row  = $("<tr id='id_row'>");
   id_row.append("<th class='bio'> Biosample ID </th>");
   id_row.append("<td class='bio' > <input type='text' style='width:200px;'></input> </td>");
-  let new_biosample_button = $("<a id='new_biosample_button' href='#'>New</a>");
+  let new_biosample_button = $("<a id='new_biosample_button_0' href='#'>New</a>");
   id_row.append($("<td class='bio'></td>").append(new_biosample_button));
-  new_biosample_button.click(function(){ add_new_biosample_row(); });
+  new_biosample_button.click(function(e){ add_new_biosample_row(e); });
   table.append(id_row);
   var description_row = $("<tr id='description_row'>");
   description_row.append("<th class='bio'> Description </th>");
@@ -114,24 +114,49 @@ function setup_biosample_table() {
   experimental_variables_row.append("<th class='bio'> Experimental Variables </th>");
   experimental_variables_row.append("<td class='bio'> <input type='text' style='width:200px;'></input>  </td>");
   table.append(experimental_variables_row);
-  var specimen_row = $("<tr id='specimen_row_0'>");
-  specimen_row.append("<th class='bio'> Specimen </th>");
-  let specimen_button = $("<a id='new_biosample_button' href='#'>New</a>");
-  specimen_row.append($("<td class='bio'></td>").append(specimen_button));
-  specimen_button.click(function(){ add_new_specimen(); });
 
-  table.append(specimen_row);
+  add_new_specimen_row(table, 0, 0);
+  add_new_specimen_row(table, 0, 1);
+  add_new_specimen_row(table, 0, 2);
+  add_new_specimen_row(table, 0, 3);
+  add_new_specimen_row(table, 0, 4);
+  add_new_specimen_row(table, 0, 5);
+  add_new_specimen_row(table, 0, 6);
+  add_new_specimen_row(table, 0, 7);
+  add_new_specimen_row(table, 0, 8);
+  add_new_specimen_row(table, 0, 9);
 
   $("#biosample_table_div").append(table);
 }
+function add_new_specimen_row(table, column, row) {
+  var specimen_row = $("<tr id='specimen_row_" + row + "'>");
+  specimen_row.append("<th class='bio'> Specimen </th>");
+  let specimen_button = $("<a id='new_biosample_button_" + column + "_" + row + "' href='#'>New</a>");
+  specimen_row.append($("<td class='bio'></td>").append("Plate: ?  Well: ?&nbsp;&nbsp;&nbsp;&nbsp;").append(specimen_button));
+  specimen_button.click(function(e){ add_new_specimen(e); });
+  table.append(specimen_row);
+}
 
-function add_new_biosample_row() {
-// the first row we need to add the element BEFORE the new row link, after that we can just append
-  $("#new_biosample_button").parent().remove();
+function add_to_existing_specimen_row(table, column, row) {
+  var specimen_row = $("#specimen_row_" + row);
+  let specimen_button = $("<a id='new_biosample_button_" + column + "_" + row + "' href='#'>New</a>");
+  specimen_row.append($("<td class='bio'></td>").append("Plate: ?  Well: ?&nbsp;&nbsp;&nbsp;&nbsp;").append(specimen_button));
+  specimen_button.click(function(e){ add_new_specimen(e); });
+}
+
+function add_new_biosample_row(e) {
+  let row = e.target.id.split("_")[3];
+  row++;
+  console.log(row);
+  $("#new_biosample_button_0").parent().remove();
   $("#id_row").append("<td class='bio'> <input type='text' style='width:200px;'></input> </td>");
-  let new_biosample_button = $("<a id='new_biosample_button' href='#' >New</a>");
-  new_biosample_button.click(function(){
-    add_new_biosample_row();
+  let new_biosample_button = $("<a id='new_biosample_button_"+row+"' href='#' >New</a>");
+  new_biosample_button.click(function(e){
+    add_new_biosample_row(e);
+    let row = e.target.id.split("_")[3];
+   $("#new_biosample_button_"+row).parent().remove();
+   row++;
+    console.log(row);
   });
   $("#id_row").append($("<td class='bio'></td>").append(new_biosample_button));
   $("#description_row").append("<td class='bio'> <TEXTAREA style='width:200px;'> </TEXTAREA> </td>");
@@ -143,13 +168,38 @@ function add_new_biosample_row() {
   $("#intrinsic_variables_row").append("<td class='bio'> <input type='text' style='width:200px;'></input>  </td>");
   $("#extrinsic_variables_row").append("<td class='bio'> <input type='text' style='width:200px;'></input>  </td>");
   $("#experimental_variables_row").append("<td class='bio'> <input type='text' style='width:200px;'></input>  </td>");
-  let specimen_button = $("<a id='new_specimen_button' href='#'>New</a>");
-  specimen_button.click(function(){ add_new_specimen(); });
-  $("#specimen_row_0").append($("<td class='bio'></td>").append(specimen_button));
- }
 
-function add_new_specimen() {
+  let table = $("#biosample_table");
+  add_to_existing_specimen_row(table, row, 0);
+  add_to_existing_specimen_row(table, row, 1);
+  add_to_existing_specimen_row(table, row, 2);
+  add_to_existing_specimen_row(table, row, 3);
+  add_to_existing_specimen_row(table, row, 4);
+  add_to_existing_specimen_row(table, row, 5);
+  add_to_existing_specimen_row(table, row, 6);
+  add_to_existing_specimen_row(table, row, 7);
+  add_to_existing_specimen_row(table, row, 8);
+  add_to_existing_specimen_row(table, row, 9);
+
+/*
+  let specimen_button = $("<a id='new_specimen_button' href='#'>New</a>");
+  specimen_button.click(function(e){ add_new_specimen(e); });
+  $("#specimen_row_0").append($("<td class='bio'></td>").append("bob"));
+  $("#specimen_row_1").append($("<td class='bio'></td>").append("bret"));
+  $("#specimen_row_2").append($("<td class='bio'></td>").append(specimen_button));
+  $("#specimen_row_3").append($("<td class='bio'></td>").append(specimen_button));
+  $("#specimen_row_4").append($("<td class='bio'></td>").append(specimen_button));
+  $("#specimen_row_5").append($("<td class='bio'></td>").append(specimen_button));
+  $("#specimen_row_6").append($("<td class='bio'></td>").append(specimen_button));
+  $("#specimen_row_7").append($("<td class='bio'></td>").append(specimen_button));
+  $("#specimen_row_8").append($("<td class='bio'></td>").append(specimen_button));
+  $("#specimen_row_9").append($("<td class='bio'></td>").append(specimen_button));
+*/
+}
+
+function add_new_specimen(e) {
   $("#specimen_dialog").empty();
+  console.log(e.target.id);
 
   let table = $("<table id='specimen_table'>");
   table.append("<tr><th class='bio'>Specimen Location</th><td><SELECT><OPTION></OPTION><OPTION>Individual</OPTION><OPTION>Plate ID and Well</OPTION><OPTION>Block ID and Slide ID</OPTION><SELECT> </td></tr>");
@@ -161,10 +211,23 @@ function add_new_specimen() {
   table.append("<tr><th class='bio'>Signal Contrast Mechanism</th><td><SELECT><OPTION></OPTION><OPTION>Mech 1</OPTION><OPTION>Mech 2</OPTION><SELECT> </td></tr>");
   table.append("<tr><th class='bio'>Stain</th><td><SELECT><OPTION></OPTION><OPTION>Stain 1</OPTION><OPTION>Stain 2</OPTION><SELECT> </td></tr>");
   table.append("<tr><th class='bio'>Molecular Entity Detected</th><td><input type='text'></input></td></tr>");
-
-
+  let submit_row = $("<tr>");
+  submit_row.append("<th>");
+  let cancel_button = $("<BUTTON id='cancel'>Cancel</BUTTON>");
+  submit_row.append($("<td>").append(cancel_button));
+  submit_row.append("<th>");
+  let add_button = $("<BUTTON id='add'>Add Specimen</BUTTON>");
+  submit_row.append($("<td>").append(add_button));
+  cancel_button.click(function(){$("#specimen_dialog").dialog("close");});
+  add_button.click(function(){$("#specimen_dialog").dialog("close");add_new_specimen_button();});
+  table.append(submit_row);
 
   $("#specimen_dialog").append(table);
 
   $("#specimen_dialog").dialog("open");
+}
+
+function add_new_specimen_button() {
+  alert("add new specimen button");
+
 }
